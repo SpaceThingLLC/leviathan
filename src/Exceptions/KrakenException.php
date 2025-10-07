@@ -13,6 +13,8 @@ class KrakenException extends Exception
 {
     /**
      * Create a new Kraken exception instance.
+     *
+     * @param  array<string, mixed>|null  $response
      */
     public function __construct(
         string $message = '',
@@ -25,6 +27,8 @@ class KrakenException extends Exception
 
     /**
      * Get the raw API response if available.
+     *
+     * @return array<string, mixed>|null
      */
     public function getResponse(): ?array
     {
@@ -33,12 +37,14 @@ class KrakenException extends Exception
 
     /**
      * Create an exception from an API error response.
+     *
+     * @param  array<string, mixed>  $response
      */
-    public static function fromResponse(array $response): static
+    public static function fromResponse(array $response): self
     {
-        $message = $response['message'] ?? 'Unknown Kraken.io error';
-        $code = $response['code'] ?? 0;
+        $message = is_string($response['message'] ?? null) ? $response['message'] : 'Unknown Kraken.io error';
+        $code = is_int($response['code'] ?? null) ? $response['code'] : 0;
 
-        return new static($message, $code, response: $response);
+        return new self($message, $code, response: $response);
     }
 }

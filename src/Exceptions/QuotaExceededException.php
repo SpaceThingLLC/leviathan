@@ -12,9 +12,9 @@ class QuotaExceededException extends KrakenException
     /**
      * Create a new quota exceeded exception.
      */
-    public static function quotaExceeded(): static
+    public static function quotaExceeded(): self
     {
-        return new static(
+        return new self(
             'Your Kraken.io API quota has been exceeded. Please upgrade your plan or wait until your quota resets.',
             429
         );

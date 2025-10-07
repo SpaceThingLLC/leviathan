@@ -12,9 +12,9 @@ class AuthenticationException extends KrakenException
     /**
      * Create a new authentication exception.
      */
-    public static function invalidCredentials(): static
+    public static function invalidCredentials(): self
     {
-        return new static(
+        return new self(
             'Invalid Kraken.io API credentials. Please check your API key and secret.',
             401
         );
@@ -23,9 +23,9 @@ class AuthenticationException extends KrakenException
     /**
      * Create exception for missing credentials.
      */
-    public static function missingCredentials(): static
+    public static function missingCredentials(): self
     {
-        return new static(
+        return new self(
             'Kraken.io API credentials are not configured. Please set KRAKEN_API_KEY and KRAKEN_API_SECRET.',
             401
         );
