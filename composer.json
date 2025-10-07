@@ -1,0 +1,74 @@
+{
+    "name": "littletriumph/leviathan",
+    "description": "A powerful Laravel package for Kraken.io image optimization service integration",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "kraken",
+        "kraken.io",
+        "image",
+        "optimization",
+        "compression",
+        "resize",
+        "webp",
+        "avif"
+    ],
+    "authors": [
+        {
+            "name": "littletriumph",
+            "homepage": "https://github.com/littletriumph"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "illuminate/support": "^12.0",
+        "illuminate/http": "^12.0",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "phpstan/phpstan": "^2.0",
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^10.0",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leviathan\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Leviathan\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "test:coverage": "pest --coverage --min=90",
+        "phpstan": "phpstan analyse --memory-limit=2G",
+        "format": "pint",
+        "format:test": "pint --test"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Leviathan\\LeviathanServiceProvider"
+            ],
+            "aliases": {
+                "Leviathan": "Leviathan\\Facades\\Leviathan"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
