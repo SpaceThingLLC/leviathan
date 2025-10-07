@@ -25,8 +25,8 @@ class LeviathanServiceProvider extends ServiceProvider
                 apiKey: config('leviathan.api_key'),
                 apiSecret: config('leviathan.api_secret'),
                 apiUrl: config('leviathan.api_url'),
-                timeout: config('leviathan.timeout'),
-                retryAttempts: config('leviathan.retry_attempts')
+                timeout: (int) (config('leviathan.timeout') ?? 30),
+                retryAttempts: (int) (config('leviathan.retry_attempts') ?? 3)
             );
         });
 

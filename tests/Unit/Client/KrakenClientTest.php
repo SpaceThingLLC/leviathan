@@ -19,11 +19,11 @@ beforeEach(function () {
 
 test('throws exception when api key is missing', function () {
     new KrakenClient('', 'secret');
-})->throws(AuthenticationException::class, 'not configured');
+})->throws(AuthenticationException::class, AuthenticationException::missingCredentials()->getMessage());
 
 test('throws exception when api secret is missing', function () {
     new KrakenClient('key', '');
-})->throws(AuthenticationException::class, 'not configured');
+})->throws(AuthenticationException::class, AuthenticationException::missingCredentials()->getMessage());
 
 test('throws exception for invalid url', function () {
     $client = new KrakenClient($this->apiKey, $this->apiSecret);

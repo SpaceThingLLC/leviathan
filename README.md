@@ -214,10 +214,10 @@ This package is currently under active development. See [CLAUDE.md](CLAUDE.md) f
 ### Implementation Progress
 
 - [x] Project structure
-- [ ] Service provider
-- [ ] Configuration
-- [ ] Base client with authentication
-- [ ] Exception hierarchy
+- [x] Service provider
+- [x] Configuration
+- [x] Base client with authentication
+- [x] Exception hierarchy
 - [ ] Image optimization API
 - [ ] Image manipulation features
 - [ ] Laravel storage integration
