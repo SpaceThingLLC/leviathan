@@ -21,12 +21,23 @@ class LeviathanServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(KrakenClientInterface::class, function ($app) {
+            /** @var string $apiKey */
+            $apiKey = config('leviathan.api_key');
+            /** @var string $apiSecret */
+            $apiSecret = config('leviathan.api_secret');
+            /** @var string $apiUrl */
+            $apiUrl = config('leviathan.api_url');
+            /** @var int $timeout */
+            $timeout = config('leviathan.timeout');
+            /** @var int $retryAttempts */
+            $retryAttempts = config('leviathan.retry_attempts');
+
             return new KrakenClient(
-                apiKey: config('leviathan.api_key'),
-                apiSecret: config('leviathan.api_secret'),
-                apiUrl: config('leviathan.api_url'),
-                timeout: (int) (config('leviathan.timeout') ?? 30),
-                retryAttempts: (int) (config('leviathan.retry_attempts') ?? 3)
+                apiKey: $apiKey,
+                apiSecret: $apiSecret,
+                apiUrl: $apiUrl,
+                timeout: $timeout,
+                retryAttempts: $retryAttempts
             );
         });
 

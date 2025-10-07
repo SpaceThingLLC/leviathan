@@ -166,27 +166,30 @@ $result = Leviathan::fromDisk('public', 'images/photo.jpg')
     ->toDisk('s3', 'optimized/photo.jpg');
 ```
 
-## API Endpoints to Support
+## API Endpoints
 
-1. **POST /v1/url** - Optimize from URL
-2. **POST /v1/upload** - Direct file upload
-3. **POST /v1/userdata** - Get account status
+1. **POST /v1/url** ✅ - Optimize from URL (implemented)
+2. **POST /v1/upload** ✅ - Direct file upload (implemented)
+3. **POST /v1/userdata** ✅ - Get account status (implemented)
 
 ## Development Guidelines
 
 ### Code Standards
-- PSR-12 coding standards (enforced by Pint)
-- Strict typing (`declare(strict_types=1)`)
-- PHPStan level 9 compliance
-- Descriptive method/variable names
-- Comprehensive PHPDoc blocks
+- PSR-12 coding standards (enforced by Pint) ✅
+- Strict typing (`declare(strict_types=1)`) ✅
+- PHPStan level 9 compliance ✅
+- Larastan integration for Laravel-specific analysis ✅
+- Descriptive method/variable names ✅
+- Comprehensive PHPDoc blocks with full type annotations ✅
 
 ### Testing Requirements
-- Every public method must have tests
-- Test both success and failure cases
-- Mock external HTTP calls
-- Test validation and edge cases
+- Every public method must have tests ✅
+- Test both success and failure cases ✅
+- Mock external HTTP calls (Guzzle MockHandler) ✅
+- Test validation and edge cases ✅
 - Use PestPHP's architectural testing
+
+**Current Coverage**: 73 tests, 154 assertions, all passing
 
 ### Git Workflow
 - Conventional commits
@@ -205,25 +208,28 @@ $result = Leviathan::fromDisk('public', 'images/photo.jpg')
 - `pestphp/pest: ^3.0`
 - `pestphp/pest-plugin-laravel: ^3.0`
 - `phpstan/phpstan: ^2.0`
+- `larastan/larastan: ^3.7`
 - `laravel/pint: ^1.0`
 - `orchestra/testbench: ^10.0`
 
 ## Implementation Phases
 
-### Phase 1: Foundation
+### Phase 1: Foundation ✅
 - [x] Project structure
-- [ ] Service provider
-- [ ] Configuration
-- [ ] Base client with authentication
-- [ ] Exception hierarchy
-- [ ] Basic unit tests
+- [x] Service provider with type-safe config
+- [x] Configuration with environment variables
+- [x] Base client with authentication
+- [x] Exception hierarchy (4 exception types)
+- [x] Basic unit tests (73 tests passing)
 
-### Phase 2: Core Features
-- [ ] Image optimization API
-- [ ] URL-based optimization
-- [ ] Upload-based optimization
-- [ ] Response handling & DTOs
-- [ ] Full test coverage
+### Phase 2: Core Features ✅
+- [x] Image optimization API
+- [x] URL-based optimization (/url endpoint)
+- [x] Upload-based optimization (/upload endpoint)
+- [x] Response handling & DTOs (3 DTOs)
+- [x] Full test coverage (154 assertions)
+- [x] PHPStan Level 9 compliance
+- [x] Larastan integration
 
 ### Phase 3: Advanced Features
 - [ ] Image manipulation

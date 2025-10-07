@@ -53,7 +53,7 @@ class KrakenClient implements KrakenClientInterface
             ...$options,
         ]);
 
-        return $this->makeRequest('POST', '/url', $payload);
+        return $this->makeRequest('POST', '/url', ['json' => $payload]);
     }
 
     /**
@@ -134,7 +134,7 @@ class KrakenClient implements KrakenClientInterface
                 $body = (string) $response->getBody();
                 $data = json_decode($body, true);
 
-                if (json_last_error() !== JSON_ERROR_NONE) {
+                if (json_last_error() !== JSON_ERROR_NONE || ! is_array($data)) {
                     throw new KrakenException('Invalid JSON response from Kraken.io API');
                 }
 
@@ -172,8 +172,8 @@ class KrakenClient implements KrakenClientInterface
      */
     private function handleApiError(array $response): never
     {
-        $message = $response['message'] ?? 'Unknown error';
-        $error = $response['error'] ?? '';
+        $message = is_string($response['message'] ?? null) ? $response['message'] : 'Unknown error';
+        $error = is_string($response['error'] ?? null) ? $response['error'] : '';
 
         // Map specific errors to custom exceptions
         if (str_contains($error, 'Authentication') || str_contains($message, 'Unauthorized')) {
